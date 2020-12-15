@@ -1,0 +1,57 @@
+#Created by: John Leonard
+#Creation Date: 11/30/2020
+#Last Updated: 12/15/2020
+
+# For my visualizations I used the libraries down Below
+library(ggplot2)
+library(dplyr)
+library(ggthemes)
+library(scales)
+library(readr)
+
+# This is a bar graph showing the amount played by year
+ggplot(VG, aes(Year, Amount.Played)) +
+  geom_bar(stat = "identity", col=rgb(0.8,0.1,0.1,0.6),
+           xlab="categories", 
+           ylab="values", 
+           main="My title", 
+           ylim=c(0,40)) +
+scale_y_continuous(labels = comma)
+
+#This visualization is a bar graph that show the amount played by month 
+ggplot(VG, aes(Month, Amount.Played)) +
+  geom_bar(stat = "identity", col=rgb(1.0,0.5,0.5,1.0),
+           xlab="categories", 
+           ylab="values", 
+           main="My title", 
+           ylim=c(0,40))+
+  scale_y_continuous(labels = comma)
+
+#This visulization is a bar graph that shows the unemployment rate through the years
+ggplot(unemm, aes(Year, Unemployment.Rate)) +
+  geom_bar(stat = "identity", col=rgb(0.8,1.0,1.0,0.6),
+           xlab="categories", 
+           ylab="values", 
+           main="My title", 
+           ylim=c(0,40)) 
+
+#This visualization is a bar graphh that shows the unemployment rate for the months
+ggplot(unemm, aes(Month, Unemployment.Rate)) +
+  geom_bar(stat = "identity", col=rgb(0.8,.8,1.,0.6),
+           xlab="categories", 
+           ylab="values", 
+           main="My title", 
+           ylim=c(0,40)) 
+
+#This visualization is a Violin chart that shows the establishment count vs the 
+#net wager
+ggplot(VG, aes(Establishment.Count, Amount.Won)) +
+  geom_violin() +
+  scale_y_continuous(labels = comma)
+#The last visualization is a violin chart that shows the net wager vs the 
+#establishment count 
+ggplot(VG, aes(Establishment.Count, Net.Wager)) +
+  geom_violin() +
+  scale_y_continuous(labels = comma)
+
+
