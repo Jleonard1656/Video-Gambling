@@ -1,0 +1,82 @@
+#Created by: John Leonard
+#Creation Date: 11/30/2020
+#Last Updated: 12/15/2020
+
+# This is the Data page for my video gambling Project
+#Here is where you find all of my commands to load and bind all of the data frames
+
+
+
+# I called on the Plyr function for a Rbind later
+library(plyr)
+
+# I used the read.csv function to create smaller tables so I can Rbind them late
+# I save the files directly into my R project so I could use the shorte
+jjan20 <- read.csv("JAN20.csv")
+jan19 <- read.csv("JAN19.csv")
+jan18 <- read.csv("JAN18.csv")
+feb20 <- read.csv("FEB20.csv")
+feb19 <- read.csv("FEB19.csv")
+feb18 <- read.csv("FEB18.csv")
+mar20 <- read.csv("MAR20.csv")
+mar19 <- read.csv("MAR19.csv")
+mar18 <- read.csv("MAR18.csv")
+apr19 <- read.csv("APR19.csv")
+apr18 <- read.csv("APR18.csv")
+may19 <- read.csv("MAY19.csv")
+may18 <- read.csv("MAY18.csv")
+jun19 <- read.csv("JUN19.csv")
+jun18 <- read.csv("JUN18.csv")
+jul20 <- read.csv("JUL20.csv")
+jul19 <- read.csv("JUL19.csv")
+jul18 <- read.csv("JUL18.csv")
+aug20 <- read.csv("AUG20.csv")
+aug19 <- read.csv("AUG19.csv")
+aug18 <- read.csv("AUG18.csv")
+sep20 <- read.csv("SEP20.csv")
+sep19 <- read.csv("SEP19.csv")
+sep18 <- read.csv("SEP18.csv")
+oct19 <- read.csv("OCT19.csv")
+oct18 <- read.csv("OCT18.csv")
+oct17 <- read.csv("OCT17.csv")
+nov19 <- read.csv("NOV19.csv")
+nov18 <- read.csv("NOV18.csv")
+nov17 <- read.csv("NOV17.csv")
+dec19 <- read.csv("DEC19.csv")
+dec18 <- read.csv("DEC18.csv")
+dec17 <- read.csv("DEC17.csv")
+
+
+#I used the ribind function to create one table of all my
+#video gambling data
+VG <- rbind(jjan20, jan19, jan18, feb20, feb19, feb18,
+            mar20, mar19, mar18, apr19, apr18, may19, may18,
+            jun19, jun18, jul20,jul19, jul18, aug20, aug19,
+            aug18, sep20, sep19, sep18, oct19, oct18, oct17, 
+            nov19, nov18, nov17, dec19, dec18, dec17)
+#This is where I imported all of the Unemployment data
+#I used the same function as before 
+unemm19 <- read.csv("2019.csv")
+unemm18 <- read.csv("2018.csv")
+unemm17 <- read.csv("2017.csv")
+
+# I used the same ribind function from before to 
+#combine my unemployment data
+unemm <- rbind(unemm19, unemm18, unemm17)
+
+
+# The next three functions are failed attempts I made
+#to merge my video gambling data and my unemployment data
+vgunem <- merge(VG, unemm, 
+                    by.x = "Month", by.y = "Month", 
+                    all.x = TRUE, all.y = TRUE)
+
+
+joined_tibble <- inner_join(VG, unemm, 
+                           by = c("Year" = "Year")) %>%
+                     as_tibble()
+
+merge2_dt <- merge(VG, unemm, 
+                   by.x = c("Municipality", "Month", "Year"), 
+                   by.y = c("Municipality", "Month", "Year"), 
+                   all.x = TRUE, all.y = TRUE)
